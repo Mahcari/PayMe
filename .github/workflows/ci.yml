@@ -34,7 +34,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy,rustfmt,rust-src
-          targets: wasm32-unknown-unknown, wasm32-wasi
+          targets: wasm32-unknown-unknown, wasm32-wasip1
 
       # Swatinem/rust-cache caches both target/ and ~/.cargo/ registries automatically
       - name: Cache cargo artifacts
