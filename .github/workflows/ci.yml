@@ -19,7 +19,6 @@ concurrency:
 
 env:
   CARGO_TERM_COLOR: always
-  RUSTUP_TOOLCHAIN: stable
 
 jobs:
   check-test-build:
@@ -33,8 +32,7 @@ jobs:
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
         with:
-          components: clippy,rustfmt,rust-src
-          targets: wasm32-unknown-unknown, wasm32-wasip1
+          toolchain: stable
 
       # Swatinem/rust-cache caches both target/ and ~/.cargo/ registries automatically
       - name: Cache cargo artifacts
