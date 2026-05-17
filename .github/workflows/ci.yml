@@ -37,17 +37,15 @@ jobs:
 
       - name: Cache cargo artifacts
         uses: Swatinem/rust-cache@v2
-        with:
-          workspaces: "contracts -> target"
 
       - name: Verify formatting
-        run: cargo fmt --manifest-path contracts/Cargo.toml --all -- --check
+        run: cargo fmt --all -- --check
 
       - name: Run clippy (deny warnings)
-        run: cargo clippy --manifest-path contracts/Cargo.toml --workspace --all-targets -- -D warnings
+        run: cargo clippy --workspace --all-targets -- -D warnings
 
       - name: Run tests
-        run: cargo test --manifest-path contracts/Cargo.toml --workspace --all-targets
+        run: cargo test --workspace --all-targets
 
       - name: Install Stellar CLI
         run: |
@@ -55,5 +53,4 @@ jobs:
           echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
 
       - name: Build optimized WASM contracts
-        working-directory: contracts
         run: stellar contract build
