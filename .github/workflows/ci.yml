@@ -19,6 +19,7 @@ concurrency:
 
 env:
   CARGO_TERM_COLOR: always
+  RUSTUP_TOOLCHAIN: stable
 
 jobs:
   check-test-build:
@@ -33,10 +34,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy,rustfmt,rust-src
-          targets: wasm32-unknown-unknown
-
-      - name: Ensure toolchain is default
-        run: rustup default stable
+          targets: wasm32-unknown-unknown, wasm32-wasi
 
       # Swatinem/rust-cache caches both target/ and ~/.cargo/ registries automatically
       - name: Cache cargo artifacts
