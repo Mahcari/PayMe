@@ -35,6 +35,7 @@ jobs:
           components: clippy,rustfmt
           targets: wasm32-unknown-unknown
 
+      # Swatinem/rust-cache caches both target/ and ~/.cargo/ registries automatically
       - name: Cache cargo artifacts
         uses: Swatinem/rust-cache@v2
 
@@ -47,11 +48,15 @@ jobs:
       - name: Run tests
         run: cargo test --workspace --all-targets
 
-      - name: Install Stellar CLI
+      # Bypasses the dbus error by pulling the pre-built Linux binary directly from Stellar
+      - name: Install Stellar CLI (Pre-compiled Binary)
         run: |
-          cargo install --locked stellar-cli@26.0.0
+          curl --proto '=https' --tlsv1.2 -sSf https://developer.stellar.org/releases/stellar-cli/install.sh | sh -s -- --version 26.0.0
           echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
-          stellar --version
+
+      # Verifies the installer placed it on the path correctly
+      - name: Verify Stellar CLI Version
+        run: stellar --version
 
       - name: Build optimized WASM contracts
         run: stellar contract build
