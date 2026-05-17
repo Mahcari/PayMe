@@ -31,8 +31,9 @@ jobs:
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
-        with:
-          toolchain: stable
+
+      - name: Set default toolchain
+        run: rustup default stable
 
       # Swatinem/rust-cache caches both target/ and ~/.cargo/ registries automatically
       - name: Cache cargo artifacts
