@@ -49,8 +49,9 @@ jobs:
 
       - name: Install Stellar CLI
         run: |
-          curl --proto '=https' --tlsv1.2 -sSf https://developer.stellar.org/releases/stellar-cli/install.sh | sh
+          cargo install --locked stellar-cli@26.0.0
           echo "$HOME/.cargo/bin" >> "$GITHUB_PATH"
+          stellar --version
 
       - name: Build optimized WASM contracts
         run: stellar contract build

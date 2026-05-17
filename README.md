@@ -50,7 +50,7 @@ PayMe Client (Next.js) -> PayMe Server (NestJS Indexer) -> Stellar Soroban RPC
 Install Stellar CLI:
 
 ```bash
-curl --proto '=https' --tlsv1.2 -sSf https://developer.stellar.org/releases/stellar-cli/install.sh | sh
+cargo install --locked stellar-cli@26.0.0
 ```
 
 ### Format, Lint, and Test
@@ -106,4 +106,4 @@ This baseline is intended to grow into milestone streaming, release schedule val
 
 ## License
 
-Private project at this stage. Add a formal OSS/commercial license before public release or grant submission.
+This repository is open source under the MIT License. See [LICENSE](LICENSE) for the full text.
